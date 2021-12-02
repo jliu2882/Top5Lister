@@ -5,14 +5,14 @@ import { GlobalStoreContext } from '../store'
 
 import EditToolbar from './EditToolbar'
 
-import AccountCircle from '@mui/icons-material/AccountCircle';
-import AppBar from '@mui/material/AppBar';
+import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
+
 
 export default function AppBanner() {
     const { auth } = useContext(AuthContext);
@@ -85,15 +85,29 @@ export default function AppBanner() {
     function getAccountMenu(loggedIn) {
         let userInitials = auth.getUserInitials();
         console.log("userInitials: " + userInitials);
-        if (loggedIn) 
-            return <div>{userInitials}</div>;
-        else
-            return <AccountCircle />;
+        let menu = <AccountCircleOutlinedIcon style={{width:50, height: 50}}/>;
+        let styleVar = {color: "black", border: "3px solid black", padding: 0, border: "none"};
+        if (loggedIn){
+            menu = <div style={{backgroundColor: "#D236DF", color: "black"}}>{userInitials}</div>;
+            styleVar = {backgroundColor: "#D236DF", padding: 6, border: "4px solid black"};
+        } 
+        return <IconButton
+                    size="large"
+                    edge="end"
+                    aria-label="account of current user"
+                    aria-controls={menuId}
+                    aria-haspopup="true"
+                    onClick={handleProfileMenuOpen}
+                    color="inherit"
+                    style={styleVar}
+                >
+                    { menu }
+                </IconButton>
     }
 
     return (
         <Box sx={{ flexGrow: 1 }}>
-            <AppBar position="static">
+            <AppBar position="static" style={{backgroundColor: "#E0E0E0"}}>
                 <Toolbar>
                     <Typography                        
                         variant="h4"
@@ -101,21 +115,11 @@ export default function AppBanner() {
                         component="div"
                         sx={{ display: { xs: 'none', sm: 'block' } }}                        
                     >
-                        <Link style={{ textDecoration: 'none', color: 'white' }} to='/'>T<sup>5</sup>L</Link>
+                        <Link style={{ textDecoration: 'none', color: '#D4AF38' }} to='/'>T<sup>5</sup>L</Link>
                     </Typography>
                     <Box sx={{ flexGrow: 1 }}>{editToolbar}</Box>
                     <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-                        <IconButton
-                            size="large"
-                            edge="end"
-                            aria-label="account of current user"
-                            aria-controls={menuId}
-                            aria-haspopup="true"
-                            onClick={handleProfileMenuOpen}
-                            color="inherit"
-                        >
-                            { getAccountMenu(auth.loggedIn) }
-                        </IconButton>
+                        { getAccountMenu(auth.loggedIn) }
                     </Box>
                 </Toolbar>
             </AppBar>

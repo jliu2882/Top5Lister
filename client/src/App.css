@@ -53,20 +53,54 @@ body {
   border-style: solid;
   border-radius: 10px;
 }
+/* 
+    var styles = " #grad1 { background-color: rgba(230,230,250,1); background-image: linear-gradient(rgba(230,230,250,1), rgba(190,190,250,1));  } ";*/
 #splash-screen {
-  background-image: linear-gradient(to bottom, #b8b808, #636723);
+  background-image: linear-gradient(to bottom, #E6E6FA, #BEBEFA);
   color: white;
   font-size: 5vw;
-  border-color: black;
-  border-width: 2px;
-  border-style: solid;
-  border-radius: 10px;
+  border-top: 4px solid #ABABAB;
+  color: black;
   padding-left: 10%;
-  padding-top: 5%;
   padding-bottom: 5%;
   height:70%;
   text-align: center;
   vertical-align: center;
+}
+#title{
+  font-size: 10rem;
+}
+.grid { 
+  display: grid;
+  grid-template-columns: 55rem 15rem;
+  grid-template-rows: 7rem 7rem 7rem;
+  grid-template-areas: 
+  "s1 s2"
+  "s1 s3"
+  "s1 s4"
+}
+#description{
+  grid-area: s1;
+  background-color: #FF0000;
+  font-size: 3rem;
+}
+#create{
+  grid-area: s2;
+  background-color: #0030FF;
+}
+#login{
+  grid-area: s3;
+  background-color: #FFFF36;
+}
+#guest{
+  grid-area: s4;
+  background-color: #00FF36;
+}
+#credits{
+  font-size: 1.5rem;
+  position: fixed;
+  bottom:10rem;
+  left:12.5rem;
 }
 
 #edit-toolbar {
