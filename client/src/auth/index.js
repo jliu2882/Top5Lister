@@ -79,7 +79,7 @@ function AuthContextProvider(props) {
                         user: response.data.user
                     }
                 })
-                history.push("/login");
+                history.push("/");
             }
         }catch(err){
             store.setModalMessage(err.response.data.errorMessage);
