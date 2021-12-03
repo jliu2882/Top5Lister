@@ -50,8 +50,9 @@ export default function AppBanner() {
             open={isMenuOpen}
             onClose={handleMenuClose}
         >
-            <MenuItem onClick={handleMenuClose}><Link to='/login/'>Login</Link></MenuItem>
-            <MenuItem onClick={handleMenuClose}><Link to='/register/'>Create New Account</Link></MenuItem>
+            <MenuItem component={Link} to="/login" onClick={handleMenuClose}><Link to='/login/'>Login</Link></MenuItem>
+            <MenuItem component={Link} to="/register" onClick={handleMenuClose}><Link to='/register/'>Create New Account</Link></MenuItem>
+            <MenuItem component={Link} to="/register" onClick={handleMenuClose}><Link to='/register/'>Continue as Guest</Link></MenuItem> {/* TODO impleemnt continue as guest feature*/}
         </Menu>
     );
     const loggedInMenu = 

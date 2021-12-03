@@ -21,13 +21,10 @@ body {
 }
 
 #root {
-  background-color: var(--swatch-primary);
   font-family: "Lexend Exa";
   position: absolute;
-  width: 80%;
-  left: 10%;
-  height: 90%;
-  top: 5%;
+  width:99%;
+  height:99%;
 }
 
 #app-root {
@@ -53,8 +50,6 @@ body {
   border-style: solid;
   border-radius: 10px;
 }
-/* 
-    var styles = " #grad1 { background-color: rgba(230,230,250,1); background-image: linear-gradient(rgba(230,230,250,1), rgba(190,190,250,1));  } ";*/
 #splash-screen {
   background-image: linear-gradient(to bottom, #E6E6FA, #BEBEFA);
   color: white;
@@ -63,44 +58,68 @@ body {
   color: black;
   padding-left: 10%;
   padding-bottom: 5%;
-  height:70%;
+  height:81.5%;
   text-align: center;
   vertical-align: center;
 }
 #title{
+  padding-right:14rem;
   font-size: 10rem;
+  padding-bottom: 2rem;
 }
-.grid { 
+.grid {
   display: grid;
-  grid-template-columns: 55rem 15rem;
+  grid-template-columns: 12rem 55rem 15rem;
   grid-template-rows: 7rem 7rem 7rem;
   grid-template-areas: 
-  "s1 s2"
-  "s1 s3"
-  "s1 s4"
+  "s5 s1 s2"
+  "s5 s1 s3"
+  "s5 s1 s4"
 }
 #description{
   grid-area: s1;
-  background-color: #FF0000;
-  font-size: 3rem;
+  margin-top:2rem;
+  font-weight: bold;
+  font-size: 2.7rem;
 }
 #create{
+  background-image: linear-gradient(to bottom, #E6E6FA, #BEBEFA);
+  color: black;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+  border: 3px solid black;
+  border-radius: 20px;
+  font-weight: bold;
+  font-size: 19%;
   grid-area: s2;
-  background-color: #0030FF;
 }
 #login{
+  background-image: linear-gradient(to bottom, #E6E6FA, #BEBEFA);
+  color: black;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+  border: 3px solid black;
+  border-radius: 20px;
+  font-weight: bold;
+  font-size: 19%;
   grid-area: s3;
-  background-color: #FFFF36;
 }
 #guest{
+  background-image: linear-gradient(to bottom, #E6E6FA, #BEBEFA);
+  color: black;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+  border: 3px solid black;
+  border-radius: 20px;
+  font-weight: bold;
+  font-size: 19%;
   grid-area: s4;
-  background-color: #00FF36;
 }
 #credits{
   font-size: 1.5rem;
   position: fixed;
-  bottom:10rem;
-  left:12.5rem;
+  bottom:1rem;
+  left:1rem;
 }
 
 #edit-toolbar {
