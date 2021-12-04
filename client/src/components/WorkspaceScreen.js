@@ -3,6 +3,9 @@ import Top5Item from './Top5Item.js'
 import List from '@mui/material/List';
 import { Typography } from '@mui/material'
 import { GlobalStoreContext } from '../store/index.js'
+import {
+    Statusbar
+} from '../components'
 /*
     This React component lets us edit a loaded list, which only
     happens when we are on the proper route.
@@ -28,17 +31,20 @@ function WorkspaceScreen() {
             </List>;
     }
     return (
-        <div id="top5-workspace">
-            <div id="workspace-edit">
-                <div id="edit-numbering">
-                    <div className="item-number"><Typography variant="h3">1.</Typography></div>
-                    <div className="item-number"><Typography variant="h3">2.</Typography></div>
-                    <div className="item-number"><Typography variant="h3">3.</Typography></div>
-                    <div className="item-number"><Typography variant="h3">4.</Typography></div>
-                    <div className="item-number"><Typography variant="h3">5.</Typography></div>
+        <div>
+            <div id="top5-workspace">
+                <div id="workspace-edit">
+                    <div id="edit-numbering">
+                        <div className="item-number"><Typography variant="h3">1.</Typography></div>
+                        <div className="item-number"><Typography variant="h3">2.</Typography></div>
+                        <div className="item-number"><Typography variant="h3">3.</Typography></div>
+                        <div className="item-number"><Typography variant="h3">4.</Typography></div>
+                        <div className="item-number"><Typography variant="h3">5.</Typography></div>
+                    </div>
+                    {editItems}
                 </div>
-                {editItems}
             </div>
+            <Statusbar></Statusbar>
         </div>
     )
 }
