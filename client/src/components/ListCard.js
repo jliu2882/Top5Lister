@@ -6,6 +6,10 @@ import EditIcon from '@mui/icons-material/Edit';
 import IconButton from '@mui/material/IconButton';
 import ListItem from '@mui/material/ListItem';
 import TextField from '@mui/material/TextField';
+import ThumbUpOutlinedIcon from '@mui/icons-material/ThumbUpOutlined';
+import ThumbDownOutlinedIcon from '@mui/icons-material/ThumbDownOutlined';
+import ThumbUpIcon from '@mui/icons-material/ThumbUp';
+import ThumbDownIcon from '@mui/icons-material/ThumbDown';
 
 /*
     This is a card in our list of top 5 lists. It lets select
@@ -64,6 +68,24 @@ function ListCard(props) {
     function handleUpdateText(event) {
         setText(event.target.value);
     }
+    let upvoted = false;
+    let downvoted = false;
+    function handleUpvote(event){
+        event.stopPropagation();
+        if(downvoted){
+            downvoted=false;
+        }
+        upvoted=!upvoted;
+        console.log("upvote happens here");
+    }
+    function handleDownvote(event){
+        event.stopPropagation();
+        if(upvoted){
+            upvoted=false;
+        }
+        downvoted=!downvoted;
+        console.log("downvote happens here");
+    }
 
     let selectClass = "unselected-list-card";
     if (selected) {
@@ -72,6 +94,14 @@ function ListCard(props) {
     let cardStatus = false;
     if (store.isListNameEditActive) {
         cardStatus = true;
+    }
+    let upvoteIcon = <ThumbUpOutlinedIcon onClick={handleUpvote} sx={{ p: 1,fontSize:'48pt' }}></ThumbUpOutlinedIcon>;
+    if(upvoted){
+         upvoteIcon = <ThumbUpIcon onClick={handleUpvote} sx={{ p: 1,fontSize:'48pt' }}></ThumbUpIcon>;
+    }
+    let downvoteIcon = <ThumbDownOutlinedIcon onClick={handleDownvote} sx={{ p: 1,fontSize:'48pt' }}></ThumbDownOutlinedIcon>;
+    if(downvoted){
+         downvoteIcon = <ThumbDownIcon onClick={handleDownvote} sx={{ p: 1,fontSize:'48pt' }}></ThumbDownIcon>;
     }
     let cardElement =
         <ListItem
@@ -88,7 +118,16 @@ function ListCard(props) {
                 fontSize: '48pt'
             }}
         >
-                <Box sx={{ p: 1, flexGrow: 1 }}>{idNamePair.name}</Box>
+                <Box sx={{ p: 1, flexGrow: 1 }}>
+                    {idNamePair.name}
+                </Box>
+                
+                <IconButton aria-label='edit'>
+                    {upvoteIcon}
+                </IconButton>
+                <IconButton aria-label='edit'>
+                    {downvoteIcon}
+                </IconButton>
                 <Box sx={{ p: 1 }}>
                     <IconButton onClick={handleToggleEdit} aria-label='edit'>
                         <EditIcon style={{fontSize:'48pt'}} />
