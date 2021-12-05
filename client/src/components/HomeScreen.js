@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { GlobalStoreContext } from '../store'
 import ListCard from './ListCard.js'
 import MUIDeleteModal from './MUIDeleteModal'
@@ -13,6 +13,9 @@ import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined
 import FunctionsIcon from '@mui/icons-material/Functions';
 import SortIcon from '@mui/icons-material/Sort';
 import TextField from '@mui/material/TextField';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import IconButton from '@mui/material/IconButton';
 
 /*
     This React component lists all the top5 lists in the UI.
@@ -21,6 +24,40 @@ import TextField from '@mui/material/TextField';
 */
 const HomeScreen = () => {
     const { store } = useContext(GlobalStoreContext);
+    const [anchorE2, setAnchorE2] = useState(null);
+    const isMenuOpen = Boolean(anchorE2);
+
+    const handleProfileMenuOpen = (event) => {
+        setAnchorE2(event.currentTarget);
+        console.log("open menu; doesn't work rn");
+        console.log("Publish Date(Newest)\nPublish Date(Oldest)\nViews\nLikes\nDislikes");
+    };
+
+    const handleMenuClose = () => {
+        setAnchorE2(null);
+        console.log("close menu");
+    };
+
+    const menuId = 'primary-search-account-menu';
+    const loggedInMenu =
+        <Menu
+            anchorE2={anchorE2}
+            anchorOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+            }}
+            id={menuId}
+            keepMounted
+            transformOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+            }}
+            open={isMenuOpen}
+            onClose={handleMenuClose}
+        >
+            <MenuItem>Hi</MenuItem>
+        </Menu>;
+let menu = loggedInMenu;
 
     useEffect(() => {
         store.loadIdNamePairs();
@@ -30,6 +67,8 @@ const HomeScreen = () => {
         store.createNewList();
     }
     let listCard = "";
+
+
     if (store) {
         listCard = 
             <List sx={{ width: '90%', left: '5%', bgcolor: 'background.paper' }}>
@@ -63,8 +102,20 @@ const HomeScreen = () => {
             <PersonOutlineOutlinedIcon style={{width:50, height: 50}}></PersonOutlineOutlinedIcon>
             <FunctionsIcon style={{width:50, height: 50}}></FunctionsIcon>
             <TextField style ={{width: '25%', backgroundColor: 'white'}} id="outlined-basic" label="Search" variant="outlined" />
+
             <span id="sort-by">Sort By</span>
-            <SortIcon id="sort-icon" style={{width:50, height: 50}}></SortIcon>
+            <IconButton id="sort-icon"
+                aria-controls={menuId}
+                aria-haspopup="true"
+
+                onClick={handleProfileMenuOpen}
+            >
+                <SortIcon style={{width:50, height: 50}}>
+                    { menu }
+                </SortIcon>
+            </IconButton>
+
+
             <div id="list-selector-list">
                 {
                     listCard
