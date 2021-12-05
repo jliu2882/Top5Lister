@@ -106,6 +106,7 @@ getTop5ListPairs = async (req, res) => {
         console.log("find user with id " + req.userId);
         async function asyncFindList(email) {
             console.log("find all Top5Lists owned by " + email);
+            //TODO { "$exists": true }instead of email
             await Top5List.find({ ownerEmail: email }, (err, top5Lists) => {
                 console.log("found Top5Lists: " + JSON.stringify(top5Lists));
                 if (err) {

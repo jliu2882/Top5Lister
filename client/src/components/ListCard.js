@@ -1,5 +1,6 @@
 import { useContext, useState } from 'react'
 import { GlobalStoreContext } from '../store'
+import AuthContext from '../auth';
 import Box from '@mui/material/Box';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
@@ -19,6 +20,7 @@ import ThumbDownIcon from '@mui/icons-material/ThumbDown';
     @author McKilla Gorilla
 */
 function ListCard(props) {
+    const { auth } = useContext(AuthContext);
     const { store } = useContext(GlobalStoreContext);
     const [editActive, setEditActive] = useState(false);
     const [text, setText] = useState("");
@@ -76,7 +78,7 @@ function ListCard(props) {
             downvoted=false;
         }
         upvoted=!upvoted;
-        console.log("upvote happens here");
+        console.log("upvote happens here; don't show total likes and dislikes until you open the list to avoid bias; it should also toggle to a different button, but doesn't work");
     }
     function handleDownvote(event){
         event.stopPropagation();
@@ -84,7 +86,7 @@ function ListCard(props) {
             upvoted=false;
         }
         downvoted=!downvoted;
-        console.log("downvote happens here");
+        console.log("downvote happens here; don't show total likes and dislikes until you open the list to avoid bias; it should also toggle to a different button, but doesn't work");
     }
 
     let selectClass = "unselected-list-card";
@@ -120,7 +122,11 @@ function ListCard(props) {
         >
                 <Box sx={{ p: 1, flexGrow: 1 }}>
                     {idNamePair.name}
+                    <Box style= {{fontSize:'12pt'}} sx={{ p: 1, flexGrow: 1 }}>
+                        {auth.getUser()}
+                    </Box>
                 </Box>
+
                 
                 <IconButton aria-label='edit'>
                     {upvoteIcon}
@@ -128,6 +134,7 @@ function ListCard(props) {
                 <IconButton aria-label='edit'>
                     {downvoteIcon}
                 </IconButton>
+                
                 <Box sx={{ p: 1 }}>
                     <IconButton onClick={handleToggleEdit} aria-label='edit'>
                         <EditIcon style={{fontSize:'48pt'}} />

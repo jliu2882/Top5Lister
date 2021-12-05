@@ -124,6 +124,10 @@ function AuthContextProvider(props) {
         return initials;
     }
 
+    auth.getUser = function() {
+        console.log(auth.user.email);
+        return "By: " + auth.user.email;
+    }
     return (
         <AuthContext.Provider value={{
             auth

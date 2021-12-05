@@ -69,6 +69,32 @@ let menu = loggedInMenu;
     let listCard = "";
 
 
+function ownList(event){
+    let bar = document.getElementById("outlined-basic");
+    console.log("Searching your lists for - " + bar.value);
+    console.log("Here, we would update store for search criteria, allowing Workspace Screen to filter out lists that don't match")
+}
+function allList(event){
+    let bar = document.getElementById("outlined-basic");
+    console.log("Searching ALL lists for - " + bar.value);
+    console.log("Here, we would update store for search criteria, AND send a different request to the DB\n\
+    await Top5List.find({ ownerEmail: email }, (err, top5Lists) => {\n\
+    await Top5List.find({ ownerEmail: { '$exists': true } }, (err, top5Lists) => {");
+
+}
+function userList(event){
+    let bar = document.getElementById("outlined-basic");
+    console.log("Searching for lists with the user - " + bar.value);
+    console.log("Here, we would update store for search2 criteria, allowing Workspace Screen to filter out by users")
+
+}
+function aggregateList(event){
+    let bar = document.getElementById("outlined-basic");
+    console.log("Searching aggregate lists for - " + bar.value);
+    console.log("Here, we would update store for search criteria, and also let them know we wish to access the aggregate, where we would form the aggregate on demand\n\
+    This isn't the most efficient way, especially in larger databases but it works well in small scale.")
+}
+
     if (store) {
         listCard = 
             <List sx={{ width: '90%', left: '5%', bgcolor: 'background.paper' }}>
@@ -97,17 +123,16 @@ let menu = loggedInMenu;
             </Fab>
                 <Typography variant="h2">Your Lists</Typography>
             </div>
-            <HomeOutlinedIcon style={{width:50, height: 50}}></HomeOutlinedIcon>
-            <GroupsOutlinedIcon style={{width:50, height: 50}}></GroupsOutlinedIcon>
-            <PersonOutlineOutlinedIcon style={{width:50, height: 50}}></PersonOutlineOutlinedIcon>
-            <FunctionsIcon style={{width:50, height: 50}}></FunctionsIcon>
+            <IconButton><HomeOutlinedIcon onClick={ownList} style={{width:50, height: 50}}></HomeOutlinedIcon></IconButton>
+            <IconButton><GroupsOutlinedIcon onClick={allList} style={{width:50, height: 50}}></GroupsOutlinedIcon></IconButton>
+            <IconButton><PersonOutlineOutlinedIcon onClick={userList} style={{width:50, height: 50}}></PersonOutlineOutlinedIcon></IconButton>
+            <IconButton><FunctionsIcon onClick={aggregateList} style={{width:50, height: 50}}></FunctionsIcon></IconButton>
             <TextField style ={{width: '25%', backgroundColor: 'white'}} id="outlined-basic" label="Search" variant="outlined" />
 
             <span id="sort-by">Sort By</span>
             <IconButton id="sort-icon"
                 aria-controls={menuId}
                 aria-haspopup="true"
-
                 onClick={handleProfileMenuOpen}
             >
                 <SortIcon style={{width:50, height: 50}}>
